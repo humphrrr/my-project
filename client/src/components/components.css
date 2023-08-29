@@ -1,0 +1,24 @@
+.command_bar {
+    width: 595px;
+    height: 30px;
+}
+
+.send_button {
+    margin-left: 10px;
+    height: 34px;
+    border-radius: 8px;
+}
+
+.message_window {
+    width: 600px;
+    height: 400px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 10px;
+    overflow: scroll;
+}
+
+#body {
+    background-color:  black;
+}
