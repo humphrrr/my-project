@@ -30,7 +30,7 @@ socketIO.on('connection', (socket) => {
       console.log('🔥: A user disconnected');
     });
 });
-
+  
 app.get('/api', (req, res) => {
   res.json({
     message: 'Hello world',
