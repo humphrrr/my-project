@@ -15,14 +15,15 @@ export default function CommandBar({socket}) {
     return (
         <div>
             <form onSubmit={handleSendCommand}>
-                <input 
+                <input
+                    id="command_box" 
                     type="text" 
                     className="command_bar" 
                     placeholder="type a command" 
                     value={command} 
                     onChange={(e) => setCommand(e.target.value)}>
                 </input>
-                <button className="send_button">Send</button>
+                <button id="send_btn" className="send_button">Send</button>
             </form>
         </div>
     )

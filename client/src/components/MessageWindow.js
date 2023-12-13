@@ -9,6 +9,18 @@ export default function MessageWindow({socket}) {
     );
 
     return (
-        <div className='message_window'>{messages}</div>
+        <div id='message_window' className='message_window'>{messages}</div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+

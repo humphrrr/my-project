@@ -4,6 +4,17 @@ const PORT = 4000;
 
 const http = require('http').Server(app);
 const cors = require('cors');
+const cp = require('./command_processor');
+const world = new cp.MyObject('The big wide world');
+const area_start = new cp.MyObject('area where you start');
+const area_north = new cp.MyObject('area to the north');
+
+area_start.container = world;
+area_north.container = world;
+
+area_start.exit_north = area_north;
+
+const objects = new Set();
 
 const socketIO = require('socket.io')(http, {
     cors: {
@@ -16,14 +27,14 @@ app.use(cors());
 socketIO.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
     
+    socket.object = new cp.MyObject(String(socket.id));
+    socket.object.container = area_start;
+
     socket.on('command', (data) => {
       console.log(data);
-      switch(String(data.command).toLowerCase()) {
-        case 'hello': {
-          socket.emit('message', {message: 'Right back at you!'});
-        }
-  
-      }
+      resp = cp.getResponse(data.command, socket.object);
+
+      socket.emit('message', {message:`${resp.self}`});
     });
 
     socket.on('disconnect', () => {
